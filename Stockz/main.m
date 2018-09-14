@@ -45,6 +45,18 @@ int main(int argc, const char * argv[]) {
         // write it all to the file in the specified path
         [stocks writeToFile:@"/tmp/stocks.plist" atomically:YES];
         
+        // read the file an put in an array
+        NSArray *stockList = [NSArray arrayWithContentsOfFile:@"/tmp/stocks.plist"];
+        
+        // log that array using a for loop
+        for (NSDictionary *d in stockList) {
+            NSLog(@"I have %@ shares of %@",
+                  [d objectForKey:@"shares"], [d objectForKey:@"symbol"]);
+        }
+        
+        // without the foor loop it looks like this
+        NSLog(@"only dictionary, %@", stockList);
+        
         
     }
     return 0;
